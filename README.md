@@ -7,7 +7,7 @@ inverse of XOR (`Y = NOT(A ⊕ B)`), often called the *equality* gate.
 
 Like an XOR gate, but with a **bubble** on the output (the bubble = inversion).
 
-<img src="images/symbol.png" width="400">
+<img src="images/symbol.png" width="460">
 
 ### Truth table
 
@@ -32,7 +32,7 @@ XNOR is built from simpler gates. A clean, standard way is:
 - `A NOR B` is `1` only when **both** inputs are low.
 - ORing them gives `1` when the inputs are **equal** (both high *or* both low), which is XNOR.
 
-<img src="images/circuit.png" width="820">
+<img src="images/circuit.png" width="900">
 
 Check it against the truth table:
 
@@ -51,11 +51,11 @@ This gate has no transistors of its own; it is **three sub-gate boards** wired t
 
 Every board uses the same 2N3904; identify its legs with the pinout (flat face toward you, legs down, **E B C** left to right):
 
-<img src="images/pinout.png" width="300">
+<img src="images/pinout.png" width="360">
 
 The block diagram below shows how the three finished boards wire together: `A` and `B` fan out to the first two boards, and those two outputs feed the third board, whose output is `Y`.
 
-<img src="images/wiring.png" width="660">
+<img src="images/wiring.png" width="900">
 
 Wire the three blocks like this:
 
