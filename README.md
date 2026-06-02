@@ -45,17 +45,29 @@ Check it against the truth table:
 
 ---
 
-## Building it physically
+## Building it on a breadboard
 
-Each block is a transistor circuit already documented in this project:
+This gate has no transistors of its own; it is **three sub-gate boards** wired together as `Y = (A AND B) OR (A NOR B)`. Build each board first using its own wiring guide (each board's README has a pinout and a per-transistor table), then connect the boards.
 
-- **AND** → see [`and-gate`](https://github.com/mrmhmdalmalki/and-gate)
-- **NOR** → see [`nor-gate`](https://github.com/mrmhmdalmalki/nor-gate)
-- **OR** → see [`or-gate`](https://github.com/mrmhmdalmalki/or-gate)
+Every board uses the same 2N3904; identify its legs with the pinout (flat face toward you, legs down, **E B C** left to right):
 
-Wire the two inputs `A` and `B` to **both** the AND and the NOR block, then feed those two
-outputs into the OR block. The OR block's output is `Y`. All blocks share the same `+5 V` and
-`GND` rails. (`0` on any wire means it is tied to **ground**; `1` means tied to **+5 V**.)
+<img src="images/pinout.png" width="300">
+
+The block diagram below shows how the three finished boards wire together: `A` and `B` fan out to the first two boards, and those two outputs feed the third board, whose output is `Y`.
+
+<img src="images/wiring.png" width="660">
+
+Wire the three blocks like this:
+
+| Block | Build guide | Inputs | Its output goes to |
+|:------|:------------|:-------|:-------------------|
+| **AND** | [and-gate](https://github.com/mrmhmdalmalki/and-gate) | A and B | one input of the OR block |
+| **NOR** | [nor-gate](https://github.com/mrmhmdalmalki/nor-gate) | A and B | the other input of the OR block |
+| **OR** | [or-gate](https://github.com/mrmhmdalmalki/or-gate) | the AND output and the NOR output | Output Y |
+
+Feed inputs `A` and `B` to **both** of the first two blocks. All three boards share the same **+5 V** and **GND** rails. `+5 V` and `GND` are **nodes**, not physical positions, so either rail of the board can be the +5 V rail.
+
+Quick test: Output is +5 V only when the two inputs are **equal**.
 
 ---
 
@@ -108,7 +120,7 @@ documented (and built from transistors) in this project:
 - *NOR and NAND gates using transistor*, TheoryCircuit ([theorycircuit.com](https://theorycircuit.com/digital-electronics/nor-and-nand-gates-using-transistor/)).
 - *Logic Gates using Transistors*, Electronics Tutorials ([electronics-tutorials.ws](https://www.electronics-tutorials.ws/logic/logic-gates-using-transistors.html)).
 - P. Horowitz and W. Hill, *The Art of Electronics*, 3rd ed., Cambridge University Press, 2015 (the BJT used as a switch).
-- A. S. Sedra and K. C. Smith, *Microelectronic Circuits*, Oxford University Press (BJT switch and the logic inverter).
+- A. S. Sedra and K. C. Smith, *Microelectronic Circuits*, Oxford University Press (BJT switch and the logic NOT gate).
 - T. L. Floyd, *Digital Fundamentals*, Pearson (logic-gate symbols and truth tables).
 
 **Transistor part.** 2N3904 NPN, onsemi datasheet ([PDF](https://www.onsemi.com/pdf/datasheet/2n3904-d.pdf)), product page ([onsemi.com](https://www.onsemi.com/products/discrete-power-modules/general-purpose-and-low-vcesat-transistors/2n3904)).
